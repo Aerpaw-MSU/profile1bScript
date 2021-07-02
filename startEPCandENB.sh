@@ -3,8 +3,8 @@
 # MODE is either IQ_EMULATION, or PL_EMULATION, or TESTBED
 #MODE=IQ_EMULATION
 MODE=$1
-EXEC_PATH=~/openairlte/openairinterface5g/cmake_targets/lte_build_oai/build/lte-softmodem
-CONFIG_PATH=~/openairlte/openairinterface5g/ci-scripts/conf_files/enb.band7.tm1.100PRB.usrpb210.conf
+EXEC_PATH=/home/openairinterface5g/cmake_targets/lte_build_oai/build/lte-softmodem
+CONFIG_PATH=/home/openairinterface5g/ci-scripts/conf_files/enb.band7.tm1.100PRB.usrpb210.conf
 
 if [ $MODE == "TESTBED" ]
 then 
@@ -13,8 +13,9 @@ then
   ip tuntap add mode tun srs_spgw_sgi
   ifconfig srs_spgw_sgi 172.16.0.1/24
   srsepc &
-  gnome-terminal -x bash -c "$EXEC_PATH -O $CONFIG_PATH | ts '[%Y-%m-%d %H:%M:%.S]' > OAI_ENB.log;exec bash" &
-elif [ $MODE == "IQ_EMULATION" ]
+  $EXEC_PATH -O $CONFIG_PATH |  ts '[%Y-%m-%d %H:%M:%sS]' > OAI_ENB.log
+  #gnome-terminal -x bash -c "$EXEC_PATH -O $CONFIG_PATH | ts '[%Y-%m-%d %H:%M:%.S]' > OAI_ENB.log;exec bash" &
+#elif [ $MODE == "IQ_EMULATION" ]
 #then
 #  mkdir /dev/net
 #  mknod /dev/net/tun c 10 200
