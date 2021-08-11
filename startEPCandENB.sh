@@ -14,7 +14,7 @@ then
   ifconfig srs_spgw_sgi 172.16.0.1/24
 screen -S EPC -dm bash -c "srsepc | ts '[%Y-%m-%d %H:%M:%.S]' > srsEPC.log"
 
-screen -S eNB -dm bash -c "printf't/n' | $EXEC_PATH -O $CONFIG_PATH |  ts '[%Y-%m-%d %H:%M:%sS]' > OAI_ENB.log"
+screen -S eNB -dm bash -c "printf 't/n' | $EXEC_PATH -O $CONFIG_PATH |  ts '[%Y-%m-%d %H:%M:%sS]' > OAI_ENB.log"
 #elif [ $MODE == "IQ_EMULATION" ]
 #then
 #  mkdir /dev/net
